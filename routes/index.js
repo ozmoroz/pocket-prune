@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
       ' is already authenticated with Pocket');
     res.render('index', { username: req.session.passport.user.username });
   } else {
-    res.redirect('/auth/pocket');
+    res.redirect('/auth');
   }
 });
 
