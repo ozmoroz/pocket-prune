@@ -35,7 +35,7 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Initialize Passport!
+// Session setup, required by Passport OAuth strategy
 
 app.use(session({
   secret: config.POCKET_API.SESSION_SECRET, // session secret
@@ -44,7 +44,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 
-// Passport Set up
+// Passport Setup
 
 const pocketStrategy = new PocketStrategy({
   consumerKey: config.POCKET_API.POCKET_CONSUMER_KEY,
@@ -67,6 +67,9 @@ passport.deserializeUser(function(user, done) {
 });
 
 passport.use(pocketStrategy);
+
+//
+// Attach Routes
 
 app.use('/', index);
 app.use('/auth', pocket);
