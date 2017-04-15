@@ -11,7 +11,7 @@ const config = {
   }
 };
 
-switch (process.env.NODE_ENV) {
+switch (process.env.NODE_ENV || ENV_DEVELOPMENT) {
   case ENV_DEVELOPMENT:
     config.BASE_URL = 'http://localhost:3000';
     config.POCKET_CALLBACK_URL = config.BASE_URL + POCKET_CALLBACK_ROUTE;
